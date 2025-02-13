@@ -1,0 +1,32 @@
+﻿<Window x:Class="AdmissionSystem.ExamResultDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Результат экзамена" Height="250" Width="400" WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Заявление:" VerticalAlignment="Center" Margin="5"/>
+        <ComboBox Grid.Column="1" Name="ApplicationComboBox" Margin="5" DisplayMemberPath="ApplicationName" SelectedValuePath="ApplicationID"/>
+
+        <TextBlock Text="Этап приема:" Grid.Row="1" VerticalAlignment="Center" Margin="5"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Name="StageComboBox" Margin="5" DisplayMemberPath="StageName" SelectedValuePath="StageID"/>
+
+        <TextBlock Text="Баллы за экзамен:" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Name="ExamScoreTextBox" Margin="5"/>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Сохранить" Width="100" Margin="5" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Width="100" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

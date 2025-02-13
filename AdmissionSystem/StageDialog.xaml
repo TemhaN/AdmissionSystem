@@ -1,0 +1,33 @@
+﻿<Window x:Class="AdmissionSystem.StageDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Этап приема" Height="250" Width="400" WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Название этапа:" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Grid.Column="1" Name="StageNameTextBox" Margin="5"/>
+
+        <TextBlock Text="Дата начала:" Grid.Row="1" VerticalAlignment="Center" Margin="5"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" Name="StartDatePicker" Margin="5"/>
+
+        <TextBlock Text="Дата окончания:" Grid.Row="2" VerticalAlignment="Center" Margin="5"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" Name="EndDatePicker" Margin="5"/>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button Content="Сохранить" Width="100" Margin="5" Click="SaveButton_Click"/>
+            <Button Content="Отмена" Width="100" Margin="5" Click="CancelButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

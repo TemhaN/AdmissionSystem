@@ -1,0 +1,312 @@
+﻿<Window x:Class="AdmissionSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Админ Панель Приемной Кампании" Height="450" Width="1450">
+    <Grid>
+        <TabControl x:Name="TabControl" SelectionChanged="TabControl_SelectionChanged">
+
+            <TabItem Header="Абитуриенты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonApplicants" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Name="RefreshAllDataButton" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click"/>
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="ApplicantSearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="ApplicantSearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="ApplicantsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" />
+
+                    <!-- Кнопки управления -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="5">
+                        <Button Name="AddApplicantButton" Content="Добавить" Width="100" Margin="5" Click="AddApplicantButton_Click" />
+                        <Button Name="EditApplicantButton" Content="Изменить" Width="100" Margin="5" Click="EditApplicantButton_Click" />
+                        <Button Name="DeleteApplicantButton" Content="Удалить" Width="100" Margin="5" Click="DeleteApplicantButton_Click" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Заявления -->
+            <TabItem Header="Заявления">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonApplications" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Name="RefreshAllDataButton2" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click2"/>
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="ApplicationSearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="ApplicationSearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="ApplicationsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,40" Grid.Row="1"/>
+
+                    <!-- Панель кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+                        <Button Content="Создать" Width="100" Margin="5" Click="CreateApplicationButton_Click"/>
+                        <Button Content="Редактировать" Width="100" Margin="5" Click="EditApplicationButton_Click"/>
+                        <Button Content="Удалить" Width="100" Margin="5" Click="DeleteApplicationButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Факультеты -->
+            <TabItem Header="Факультеты">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonFaculties" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Name="RefreshAllDataButton3" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click3"/>
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="FacultySearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="FacultySearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="FacultiesDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,40" Grid.Row="1"/>
+
+                    <!-- Панель кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+                        <Button Content="Создать" Width="100" Margin="5" Click="CreateFacultyButton_Click"/>
+                        <Button Content="Редактировать" Width="100" Margin="5" Click="EditFacultyButton_Click"/>
+                        <Button Content="Удалить" Width="100" Margin="5" Click="DeleteFacultyButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Специальности -->
+            <TabItem Header="Специальности">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonSpecializations" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Name="RefreshAllDataButton4" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click4"/>
+
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="SpecializationSearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="SpecializationSearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="SpecializationsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,40" Grid.Row="1"/>
+
+                    <!-- Панель кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+                        <Button Content="Создать" Width="100" Margin="5" Click="CreateSpecializationButton_Click"/>
+                        <Button Content="Редактировать" Width="100" Margin="5" Click="EditSpecializationButton_Click"/>
+                        <Button Content="Удалить" Width="100" Margin="5" Click="DeleteSpecializationButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Этапы приема -->
+            <TabItem Header="Этапы приема">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonAdmissionStages" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Name="RefreshAllDataButton5" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click5"/>
+
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="AdmissionStageSearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="AdmissionStageSearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="AdmissionStagesDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,40" Grid.Row="1"/>
+
+                    <!-- Панель кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+                        <Button Content="Создать" Width="100" Margin="5" Click="CreateStageButton_Click"/>
+                        <Button Content="Редактировать" Width="100" Margin="5" Click="EditStageButton_Click"/>
+                        <Button Content="Удалить" Width="100" Margin="5" Click="DeleteStageButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Результаты экзаменов -->
+            <TabItem Header="Результаты экзаменов">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Поле поиска и кнопки -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="10">
+                        <!-- Основной Grid для колонок -->
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Кнопки слева -->
+                                <ColumnDefinition Width="*" />
+                                <!-- Пространство для центрального выравнивания -->
+                                <ColumnDefinition Width="Auto" />
+                                <!-- Поиск по центру -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Кнопки слева -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0" Margin="0,5,10,0">
+                                <Button Name="ExportToExcelButtonExamResults" Content="Экспорт в Excel" Width="150" Margin="5" Click="ExportToExcelButton_Click"/>
+                                <Button Content="Обновить статусы" Width="150" Margin="5" Click="UpdateExamResultsStatusButton_Click"/>
+                                <Button Name="RefreshAllDataButton6" VerticalAlignment="Center" Content="Обновить" Width="100" Margin="5" Click="RefreshAllDataButton_Click6"/>
+
+                            </StackPanel>
+
+                            <!-- Поиск по центру -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Column="1" Margin="0, 0, 10, 0">
+                                <TextBlock Text="Поиск: " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Name="ExamResultSearchTextBox" Width="200" Margin="0,0,10,0" TextChanged="ExamResultSearchTextBox_TextChanged"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- DataGrid для отображения данных -->
+                    <DataGrid Name="ExamResultsDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,0,40" Grid.Row="1"/>
+
+                    <!-- Панель кнопок -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Grid.Row="2">
+                        <Button Content="Добавить" Width="100" Margin="5" Click="CreateExamResultButton_Click"/>
+                        <Button Content="Редактировать" Width="100" Margin="5" Click="EditExamResultButton_Click"/>
+                        <Button Content="Удалить" Width="100" Margin="5" Click="DeleteExamResultButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+
+            <!-- Пользователи -->
+            <TabItem Header="Пользователи">
+                <Grid>
+                    <DataGrid Name="UsersDataGrid" AutoGenerateColumns="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
